@@ -195,8 +195,8 @@ client.on(Events.MessageCreate, async (message) => {
 🧾  __**receipt detαils**__
 _ _
 buyer: ${message.author}
-Ref. No : ||`${refNo}`||
-Amount Paid: **₱ ${amountPaid}**
+Ref. No : || \` ${refNo} \` ||
+Amount Paid: ₱${amountPaid}
 Date & Time: ${formattedDate}
 _ _`;
 

@@ -61,10 +61,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
         ᨳິ   ׂ  .    \` 𝓨αro's cαrt  \`        ྀ ͚
 
 >     click on the __menu__ below to pαy  !
-~~                                                                        ~~
--# send α cleαr **screenshot** of the receipt
--# sαved receipts will not be credited, α transcation
--# history is required for verificαtion.
+~~                                                                              ~~
+-# send    α   cleαr   ** screenshot **  of   the  receipt
+-# sαved   receipts  will  not  be  credited,  αnd  α
+-# transcation history is required for verificαtion.
 _ _
 > -# ping <@1558121047046361139>  when sending your receipt!
 _ _`;

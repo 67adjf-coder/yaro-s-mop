@@ -58,10 +58,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
     if (interaction.isChatInputCommand() && interaction.commandName === 'payment') {
         const embedDescription = 
 `_ _
-       ᨳິ    ׂ  .    ` 𝓨αro's cαrt  `       ྀ ͚
+        ᨳິ   ׂ  .    \` 𝓨αro's cαrt  \`        ྀ ͚
 
->     click on the __button__ below to pαy  !
-~~                                                                            ~~
+>     click on the __menu__ below to pαy  !
+~~                                                                        ~~
 -# send α cleαr **screenshot** of the receipt
 -# sαved receipts will not be credites, α transcation
 -# history is required for verificαtion.
@@ -147,7 +147,7 @@ client.on(Events.MessageCreate, async (message) => {
         const statusMsg = await message.reply('Scanning receipt details, please wait...');
 
         try {
-            // 1. Download image buffer via Axios (bypasses Render/CDN restrictions)
+            // 1. Download image buffer via Axios
             const response = await axios.get(attachment.url, { responseType: 'arraybuffer' });
             const imageBuffer = Buffer.from(response.data);
 
@@ -175,7 +175,6 @@ client.on(Events.MessageCreate, async (message) => {
                 const match = text.match(pattern);
                 if (match) {
                     const rawRef = match[1] || match[0];
-                    // Strip inner spaces to ensure clean reference number output
                     refNo = rawRef.replace(/\s+/g, '').trim();
                     break;
                 }

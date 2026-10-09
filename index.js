@@ -61,10 +61,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
         ᨳິ   ׂ  .    \` 𝓨αro's cαrt  \`        ྀ ͚
 
 >     click on the __menu__ below to pαy  !
-~~                                                                              ~~
--# send    α   cleαr   ** screenshot **  of   the  receipt
--# sαved   receipts  will  not  be  credited,  αnd  α
--# transcation history is required for verificαtion.
+~~                                                                        ~~
+-# send α cleαr **screenshot** of the receipt
+-# sαved receipts will not be credites, α transcation
+-# history is required for verificαtion.
 _ _
 > -# ping <@1558121047046361139>  when sending your receipt!
 _ _`;
@@ -154,14 +154,7 @@ client.on(Events.MessageCreate, async (message) => {
             // 2. OCR image scan using Tesseract
             const { data: { text } } = await Tesseract.recognize(imageBuffer, 'eng');
 
-            // 3. Extract Initials / Masked Name (Matches "JL••••A CH••••••E H.", "J... C. H.", or plain text)
-            const initialsMatch = text.match(/\b([A-Za-z•.*]{1,10}(?:\s+[A-Za-z•.*]{1,10}){1,4})\b/);
-            let initials = 'J. C. H.';
-            if (initialsMatch) {
-                initials = initialsMatch[1].replace(/\s+/g, ' ').trim();
-            }
-
-            // 4. Extract Reference Number (Handles spaced GCash refs like "7045 933 602607")
+            // 3. Extract Reference Number (Handles spaced GCash refs like "7045 933 602607")
             const refPatterns = [
                 /(?:Ref\s*No\.|Reference\s*No\.|Ref\.|Transaction\s*No\.|Txn\s*ID|Control\s*No\.)\s*[:#-]?\s*([0-9\s]{10,20})/i,
                 /\b(\d{4}\s?\d{3}\s?\d{6})\b/,             // Spaced GCash 13-digit format
@@ -180,12 +173,12 @@ client.on(Events.MessageCreate, async (message) => {
                 }
             }
 
-            // 5. Extract Amount Paid
+            // 4. Extract Amount Paid
             const amountMatch = text.match(/(?:Total\s*Amount\s*Sent|Amount|Total|Paid|₱|PHP)\s*[:#-]?\s*(?:PHP|P|₱)?\s*([\d,]+\.\d{2})/i) 
                                || text.match(/\b([\d,]+\.\d{2})\b/);
             const amountPaid = amountMatch ? amountMatch[1] : '0.00';
 
-            // 6. Format Date & Time GMT+8
+            // 5. Format Date & Time GMT+8
             const formattedDate = new Date().toLocaleString('en-US', {
                 timeZone: 'Asia/Singapore',
                 year: 'numeric',
@@ -196,12 +189,12 @@ client.on(Events.MessageCreate, async (message) => {
                 hour12: true
             }) + ' GMT+8';
 
-            // Embed Description Layout
+            // Embed Description Layout (Replaced initials with buyer mention)
             const receiptEmbedDescription = 
 `_ _
 🧾  __**receipt detαils**__
 _ _
-initials: \` ${initials} \`
+buyer: ${message.author}
 Ref. No : || \` ${refNo} \` ||
 Amount Paid: ₱${amountPaid}
 Date & Time: ${formattedDate}
